@@ -174,11 +174,12 @@ class TotalWorkTime extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final total = ref.watch(timerHistoryProvider).workTimeTotal;
     if (total.inMicroseconds == 0) {
-      return const Text("00:00");
+      return const Text("-");
     }
 
-    final min = total.inMinutes.toString().padLeft(2, '0');
+    final h = (total.inMinutes / 60).floor().toInt().toString().padLeft(2, '0');
+    final m = (total.inMinutes % 60).toInt().toString().padLeft(2, '0');
 
-    return Text("$min:00");
+    return Text("$h:$m:00");
   }
 }
