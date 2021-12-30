@@ -48,12 +48,73 @@ class HomePage extends ConsumerWidget {
                     )),
               ),
               Expanded(
-                child: Center(
-                    child: Consumer(
-                  builder: (context, ref, child) => TimerLabel(
-                      timeLeftSec: ref.watch(
-                          timerNotifierProvider.select((v) => v.timeLeft))),
-                )),
+                child: Consumer(
+                  /// draw base circle
+                  /// as it is not changed overtime, use child prop so that this widget will be used as cache.
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(32.0),
+                        child: AspectRatio(
+                            aspectRatio: 1,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: const [
+                                Expanded(
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 1,
+                                    value: 1,
+                                  ),
+                                ),
+                              ],
+                            )),
+                      ),
+                    ],
+                  ),
+                  builder: (context, ref, child) {
+                    final timerMin = ref.watch(timerNotifierProvider
+                            .select((value) => value.currentTimerMinutes)) *
+                        60;
+                    final timeLeft = ref.watch(timerNotifierProvider
+                        .select((value) => value.timeLeft));
+                    final progress = (timerMin - timeLeft) / timerMin;
+
+                    return Stack(
+                      children: [
+                        child!, // draw base circle widget
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(32.0),
+                              child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      Expanded(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                          strokeWidth: 3,
+                                          value: progress,
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                            ),
+                          ],
+                        ),
+                        Center(
+                          child: TimerLabel(
+                            timeLeftSec: timeLeft,
+                          ),
+                        )
+                      ],
+                    );
+                  },
+                ),
               ),
               Consumer(
                 builder: (context, ref, child) => Row(
