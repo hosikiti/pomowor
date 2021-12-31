@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pomowor/provider/local_notification.dart';
 import 'package:pomowor/provider/timer.dart';
 import 'package:pomowor/provider/timer_history.dart';
 import 'package:pomowor/util/dialogs.dart';
@@ -36,7 +38,7 @@ class HomePage extends ConsumerWidget {
                               .clearWorkTime();
                         }
                       },
-                      onPressed: () {},
+                      onPressed: () async {},
                       child: Wrap(
                         spacing: 4,
                         children: const [
@@ -153,7 +155,7 @@ class HomePage extends ConsumerWidget {
                       onPressed: () {
                         var timer = ref.read(timerNotifierProvider.notifier);
                         if (ref.read(timerNotifierProvider).isRunning) {
-                          timer.stopTimer();
+                          timer.stopTimer(clearNotification: true);
                         } else {
                           timer.startTimer(true);
                         }
@@ -188,13 +190,13 @@ class HomePage extends ConsumerWidget {
                   child: Consumer(
                     builder: (context, ref, child) => TextButton(
                       onPressed: () async {
-                        var result =
+                        final result =
                             await showConfirmDialog(context, "Reset timer?");
                         if (result) {
                           ref.read(timerNotifierProvider.notifier).resetTimer();
                         }
                       },
-                      child: const Text("SKIP"),
+                      child: const Text("Skip"),
                     ),
                   ),
                 ),

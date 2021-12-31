@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pomowor/provider/local_notification.dart';
 import 'package:pomowor/provider/timer_history.dart';
 import 'package:pomowor/state/timer_mode.dart';
 import 'package:pomowor/state/timer_state.dart';
@@ -65,6 +66,12 @@ class TimerNotifier extends StateNotifier<TimerState> {
       state = state.copyWith(timeUntil: timeUntil);
     }
 
+    // set notification
+    _reader(localNotificationProvider)
+      ..cancelTimer()
+      ..scheduledNotification(
+          "Current timer has ended!", Duration(seconds: state.timeLeft));
+
     _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       final diff = state.timeUntil!.difference(DateTime.now()).inSeconds;
       state =
@@ -75,9 +82,12 @@ class TimerNotifier extends StateNotifier<TimerState> {
     });
   }
 
-  void stopTimer() {
+  void stopTimer({bool clearNotification = false}) {
     state = state.copyWith(isRunning: false);
     _timer?.cancel();
+    if (clearNotification) {
+      _reader(localNotificationProvider).cancelTimer();
+    }
   }
 
   void _onTimerDone() {
