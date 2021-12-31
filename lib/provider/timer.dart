@@ -33,9 +33,9 @@ class TimerNotifier extends StateNotifier<TimerState> {
     int timeLeft;
     if (!_isTestMode) {
       timeUntil = DateTime.now().add(Duration(minutes: min));
-      timeLeft = min * 60; // 残り時間(sec)をセット
+      timeLeft = min * 60; // time left in seconds until timer ends
     } else {
-      // 開発時テスト用の短いタイマー
+      // very short timer for test
       int _testTimeSec = _testTimeForWork;
       if (state.mode == TimerMode.shortBreak) {
         _testTimeSec = _testTimeForBreak;
@@ -43,7 +43,7 @@ class TimerNotifier extends StateNotifier<TimerState> {
         _testTimeSec = _testTimeForLongBreak;
       }
       timeUntil = DateTime.now().add(Duration(seconds: _testTimeSec));
-      timeLeft = _testTimeSec; // 残り時間(sec)をセット
+      timeLeft = _testTimeSec;
     }
 
     state = state.copyWith(

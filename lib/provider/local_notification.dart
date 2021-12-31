@@ -22,14 +22,15 @@ class LocalNotification {
         body,
         tz.TZDateTime.now(tz.local).add(showIn),
         const NotificationDetails(
-            android: AndroidNotificationDetails(timerChannelId, "Pomowor",
-                importance: Importance.max, priority: Priority.high)),
+          android: AndroidNotificationDetails(timerChannelId, "Pomowor",
+              importance: Importance.max, priority: Priority.high),
+        ),
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime);
   }
 
-  cancelTimer() {
+  void cancelTimer() {
     _localNotification.cancel(timerId);
   }
 }

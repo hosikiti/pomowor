@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pomowor/provider/local_notification.dart';
 import 'package:pomowor/provider/timer.dart';
 import 'package:pomowor/provider/timer_history.dart';
 import 'package:pomowor/util/dialogs.dart';
@@ -217,9 +215,9 @@ class TimerLabel extends StatelessWidget {
 
   String get label {
     String m, s;
-    var min = (timeLeftSec / 60).floor().toInt();
+    final min = (timeLeftSec / 60).floor().toInt();
     m = min.toString().padLeft(2, "0");
-    var sec = timeLeftSec % 60;
+    final sec = timeLeftSec % 60;
     s = sec.toString().padLeft(2, "0");
     return "$m:$s";
   }
