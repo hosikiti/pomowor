@@ -52,21 +52,23 @@ const $TimerState = _$TimerStateTearOff();
 
 /// @nodoc
 mixin _$TimerState {
-// ワークタイム
-  int get workDuration => throw _privateConstructorUsedError; // ワークタイムのカウント
+// work time duration
+  int get workDuration => throw _privateConstructorUsedError; // work time count
   int get workCount =>
-      throw _privateConstructorUsedError; // 何回ワークしたらLong breakするか
+      throw _privateConstructorUsedError; // how many count needed to trigger long break
   int get workCountForLongBreak =>
-      throw _privateConstructorUsedError; // タイマーが稼働しているか
-  bool get isRunning => throw _privateConstructorUsedError; // タイマーがリセットされた状態か
-  bool get isReset => throw _privateConstructorUsedError; // 現在のタイマー
+      throw _privateConstructorUsedError; // timer running state
+  bool get isRunning => throw _privateConstructorUsedError; // timer reset state
+  bool get isReset =>
+      throw _privateConstructorUsedError; // current timer's duration
   int get currentTimerMinutes =>
-      throw _privateConstructorUsedError; // タイマーが終わる日時
-  DateTime? get timeUntil => throw _privateConstructorUsedError; // タイマーの残りが何秒か
+      throw _privateConstructorUsedError; // when the current timer stops
+  DateTime? get timeUntil =>
+      throw _privateConstructorUsedError; // how much time left
   int get timeLeft =>
-      throw _privateConstructorUsedError; // Accel/Slowのたびに、どのくらい時間を増やすか
+      throw _privateConstructorUsedError; // how many minutes will be added/subtraced on tap access/slow button
   int get increaseMinutesBy => throw _privateConstructorUsedError;
-  TimerMode get mode => throw _privateConstructorUsedError; // 休み時間
+  TimerMode get mode => throw _privateConstructorUsedError;
   int get shortBreakDuration => throw _privateConstructorUsedError;
   int get longBreakDuration => throw _privateConstructorUsedError;
 
@@ -288,36 +290,36 @@ class _$_TimerState with DiagnosticableTreeMixin implements _TimerState {
       this.longBreakDuration = 15});
 
   @JsonKey(defaultValue: 20)
-  @override // ワークタイム
+  @override // work time duration
   final int workDuration;
   @JsonKey(defaultValue: 0)
-  @override // ワークタイムのカウント
+  @override // work time count
   final int workCount;
   @JsonKey(defaultValue: 4)
-  @override // 何回ワークしたらLong breakするか
+  @override // how many count needed to trigger long break
   final int workCountForLongBreak;
   @JsonKey(defaultValue: false)
-  @override // タイマーが稼働しているか
+  @override // timer running state
   final bool isRunning;
   @JsonKey(defaultValue: true)
-  @override // タイマーがリセットされた状態か
+  @override // timer reset state
   final bool isReset;
   @JsonKey(defaultValue: 20)
-  @override // 現在のタイマー
+  @override // current timer's duration
   final int currentTimerMinutes;
-  @override // タイマーが終わる日時
+  @override // when the current timer stops
   final DateTime? timeUntil;
   @JsonKey(defaultValue: 0)
-  @override // タイマーの残りが何秒か
+  @override // how much time left
   final int timeLeft;
   @JsonKey(defaultValue: 5)
-  @override // Accel/Slowのたびに、どのくらい時間を増やすか
+  @override // how many minutes will be added/subtraced on tap access/slow button
   final int increaseMinutesBy;
   @JsonKey(defaultValue: TimerMode.work)
   @override
   final TimerMode mode;
   @JsonKey(defaultValue: 5)
-  @override // 休み時間
+  @override
   final int shortBreakDuration;
   @JsonKey(defaultValue: 15)
   @override
@@ -413,27 +415,27 @@ abstract class _TimerState implements TimerState {
       int shortBreakDuration,
       int longBreakDuration}) = _$_TimerState;
 
-  @override // ワークタイム
+  @override // work time duration
   int get workDuration;
-  @override // ワークタイムのカウント
+  @override // work time count
   int get workCount;
-  @override // 何回ワークしたらLong breakするか
+  @override // how many count needed to trigger long break
   int get workCountForLongBreak;
-  @override // タイマーが稼働しているか
+  @override // timer running state
   bool get isRunning;
-  @override // タイマーがリセットされた状態か
+  @override // timer reset state
   bool get isReset;
-  @override // 現在のタイマー
+  @override // current timer's duration
   int get currentTimerMinutes;
-  @override // タイマーが終わる日時
+  @override // when the current timer stops
   DateTime? get timeUntil;
-  @override // タイマーの残りが何秒か
+  @override // how much time left
   int get timeLeft;
-  @override // Accel/Slowのたびに、どのくらい時間を増やすか
+  @override // how many minutes will be added/subtraced on tap access/slow button
   int get increaseMinutesBy;
   @override
   TimerMode get mode;
-  @override // 休み時間
+  @override
   int get shortBreakDuration;
   @override
   int get longBreakDuration;

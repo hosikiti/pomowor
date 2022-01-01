@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomowor/provider/local_notification.dart';
+import 'package:pomowor/provider/test_mode.dart';
 import 'package:pomowor/provider/timer_history.dart';
 import 'package:pomowor/state/timer_mode.dart';
 import 'package:pomowor/state/timer_state.dart';
 import 'package:just_audio/just_audio.dart';
 
-const _isTestMode = false;
 const _testTimeForWork = 10;
 const _testTimeForBreak = 5;
 const _testTimeForLongBreak = 10;
@@ -31,7 +31,7 @@ class TimerNotifier extends StateNotifier<TimerState> {
 
     DateTime timeUntil;
     int timeLeft;
-    if (!_isTestMode) {
+    if (!_reader(testModeProvider).isTestMode) {
       timeUntil = DateTime.now().add(Duration(minutes: min));
       timeLeft = min * 60; // time left in seconds until timer ends
     } else {

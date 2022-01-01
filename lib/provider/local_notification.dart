@@ -15,6 +15,7 @@ class LocalNotification {
   late final _localNotification = _reader(flutterLocalNotificationsProvider);
   LocalNotification(this._reader);
 
+  /// Make scheduled notification
   Future<void> scheduledNotification(String body, Duration showIn) async {
     await _localNotification.zonedSchedule(
         timerId,
@@ -30,6 +31,7 @@ class LocalNotification {
             UILocalNotificationDateInterpretation.absoluteTime);
   }
 
+  /// Cancel created timer
   void cancelTimer() {
     _localNotification.cancel(timerId);
   }

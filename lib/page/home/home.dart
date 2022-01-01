@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pomowor/provider/test_mode.dart';
 import 'package:pomowor/provider/timer.dart';
 import 'package:pomowor/provider/timer_history.dart';
 import 'package:pomowor/util/dialogs.dart';
@@ -184,9 +185,25 @@ class HomePage extends ConsumerWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Center(
-                  child: Consumer(
-                    builder: (context, ref, child) => TextButton(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onPanStart: (_) {
+                        // trigger testing mode!
+                        ref.read(testModeProvider.notifier).onEvent();
+                      },
+                      child: Consumer(
+                        builder: (context, ref, child) => Container(
+                            width: 80,
+                            height: 44,
+                            color: Colors.transparent,
+                            child: ref.watch(testModeProvider).isTestMode
+                                ? const Center(child: Text("TESTING"))
+                                : null),
+                      ),
+                    ),
+                    TextButton(
                       onPressed: () async {
                         final result =
                             await showConfirmDialog(context, "Reset timer?");
@@ -196,7 +213,11 @@ class HomePage extends ConsumerWidget {
                       },
                       child: const Text("Skip"),
                     ),
-                  ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const SizedBox(width: 80, height: 44),
+                    ),
+                  ],
                 ),
               )
             ],
