@@ -8,11 +8,7 @@ import 'package:pomowor/state/timer_mode.dart';
 import 'package:pomowor/state/timer_state.dart';
 import 'package:just_audio/just_audio.dart';
 
-const _testTimeForWork = 10;
-const _testTimeForBreak = 5;
-const _testTimeForLongBreak = 10;
-
-const minBreakDuration = 5;
+const _testModeSpeedUpRate = 50;
 
 class TimerNotifier extends StateNotifier<TimerState> {
   final Reader _reader;
@@ -31,20 +27,8 @@ class TimerNotifier extends StateNotifier<TimerState> {
 
     DateTime timeUntil;
     int timeLeft;
-    if (!_reader(testModeProvider).isTestMode) {
-      timeUntil = DateTime.now().add(Duration(minutes: min));
-      timeLeft = min * 60; // time left in seconds until timer ends
-    } else {
-      // very short timer for test
-      int _testTimeSec = _testTimeForWork;
-      if (state.mode == TimerMode.shortBreak) {
-        _testTimeSec = _testTimeForBreak;
-      } else if (state.mode == TimerMode.longBreak) {
-        _testTimeSec = _testTimeForLongBreak;
-      }
-      timeUntil = DateTime.now().add(Duration(seconds: _testTimeSec));
-      timeLeft = _testTimeSec;
-    }
+    timeUntil = DateTime.now().add(Duration(minutes: min));
+    timeLeft = min * 60; // time left in seconds until timer ends
 
     state = state.copyWith(
         isRunning: start,
@@ -66,14 +50,27 @@ class TimerNotifier extends StateNotifier<TimerState> {
       state = state.copyWith(timeUntil: timeUntil);
     }
 
+    final isTestMode = _reader(testModeProvider).isTestMode;
     // set notification
     _reader(localNotificationProvider)
       ..cancelTimer()
       ..scheduledNotification(
-          "Current timer has ended!", Duration(seconds: state.timeLeft));
+          "Current timer has ended!",
+          Duration(
+              seconds: isTestMode
+                  ? (state.timeLeft ~/ _testModeSpeedUpRate)
+                  : state.timeLeft));
 
     _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      final diff = state.timeUntil!.difference(DateTime.now()).inSeconds;
+      var diff = state.timeUntil!.difference(DateTime.now()).inSeconds;
+
+      // if testmode is true, timer speed will be xx times faster!
+      if (_reader(testModeProvider).isTestMode) {
+        final timePassed = (state.currentTimerMinutes * 60) - diff;
+        diff = (state.currentTimerMinutes * 60) -
+            (timePassed * _testModeSpeedUpRate);
+      }
+
       state =
           state.copyWith(timeLeft: diff, isRunning: diff >= 0, isReset: false);
       if (diff <= 0) {
