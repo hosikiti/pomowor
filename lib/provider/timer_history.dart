@@ -21,6 +21,7 @@ class TimerHistory extends StateNotifier<TimerHistoryState> {
 
   void clearWorkTime() {
     state = state.copyWith(workTimeTotal: const Duration());
+    _saveState();
   }
 
   _restoreState() {
