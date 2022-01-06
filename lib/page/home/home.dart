@@ -156,7 +156,7 @@ class HomePage extends ConsumerWidget {
                         if (ref.read(timerNotifierProvider).isRunning) {
                           timer.stopTimer(clearNotification: true);
                         } else {
-                          timer.startTimer(true);
+                          timer.startTimer(resume: true);
                         }
                       },
                     ),

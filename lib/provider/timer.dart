@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pomowor/provider/app_foreground_state.dart';
 import 'package:pomowor/provider/local_notification.dart';
 import 'package:pomowor/provider/test_mode.dart';
 import 'package:pomowor/provider/timer_history.dart';
@@ -9,20 +9,23 @@ import 'package:pomowor/state/timer_mode.dart';
 import 'package:pomowor/state/timer_state.dart';
 import 'package:just_audio/just_audio.dart';
 
+/// Speed up rate for test mode
+/// If the rate is 50, it makes the timer speed 50x faster!
 const _testModeSpeedUpRate = 50;
 
-class TimerNotifier extends StateNotifier<TimerState>
-    with WidgetsBindingObserver {
+class TimerNotifier extends StateNotifier<TimerState> {
   final Reader _reader;
 
   TimerNotifier(this._reader) : super(const TimerState()) {
     setTimer(20, false);
-    WidgetsBinding.instance!.addObserver(this);
   }
 
   Timer? _timer;
   final AudioPlayer _player = AudioPlayer();
 
+  /// Set timer in specified [min] minutes
+  ///
+  /// If [start] is true, the timer starts immediately
   void setTimer(int min, bool start) {
     if (min <= 0) {
       return;
@@ -40,11 +43,12 @@ class TimerNotifier extends StateNotifier<TimerState>
         timeLeft: timeLeft);
 
     if (start) {
-      startTimer(false);
+      startTimer(resume: false);
     }
   }
 
-  void startTimer(bool resume) {
+  /// Start timer
+  void startTimer({required bool resume}) {
     if (state.timeUntil == null) {
       return;
     }
@@ -53,21 +57,20 @@ class TimerNotifier extends StateNotifier<TimerState>
       state = state.copyWith(timeUntil: timeUntil);
     }
 
-    final isTestMode = _reader(testModeProvider).isTestMode;
-    // set notification
+    // Set notification
     _reader(localNotificationProvider)
       ..cancelTimer()
       ..scheduledNotification(
           "Current timer has ended!",
           Duration(
-              seconds: isTestMode
+              seconds: _reader(testModeProvider).isTestMode
                   ? (state.timeLeft ~/ _testModeSpeedUpRate)
                   : state.timeLeft));
 
     _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       var diff = state.timeUntil!.difference(DateTime.now()).inSeconds;
 
-      // if testmode is true, timer speed will be xx times faster!
+      // If testmode is true, timer speed will be xx times faster!
       if (_reader(testModeProvider).isTestMode) {
         final timePassed = (state.currentTimerMinutes * 60) - diff;
         diff = (state.currentTimerMinutes * 60) -
@@ -77,6 +80,10 @@ class TimerNotifier extends StateNotifier<TimerState>
       state =
           state.copyWith(timeLeft: diff, isRunning: diff >= 0, isReset: false);
       if (diff <= 0) {
+        // Do not show notification when the app is foreground
+        if (_reader(appForegroundStateProvider)) {
+          _reader(localNotificationProvider).cancelTimer();
+        }
         _onTimerDone();
       }
     });
@@ -198,20 +205,17 @@ class TimerNotifier extends StateNotifier<TimerState>
     _player.stop();
   }
 
-  onDispose() {
-    WidgetsBinding.instance!.removeObserver(this);
-    _player.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (this.state.isRunning == false) {
-      return;
-    }
-    if (state == AppLifecycleState.resumed) {
-      // Clear all notifications on resume
+  // Callback on resume
+  onAppResume() {
+    if (!state.isRunning) {
+      // Clear all notifications on resume so that
+      // the user will not see notifications after activating the app after the timer ends
       _reader(localNotificationProvider).cancelTimer();
     }
+  }
+
+  onDispose() {
+    _player.dispose();
   }
 }
 
@@ -220,6 +224,13 @@ final timerNotifierProvider =
   final instance = TimerNotifier(ref.read);
   ref.onDispose(() {
     instance.dispose();
+  });
+
+  // Notify on app's foreground state change
+  ref.listen<bool>(appForegroundStateProvider, (_, isForeground) {
+    if (isForeground) {
+      instance.onAppResume();
+    }
   });
   return instance;
 });
