@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomowor/provider/local_notification.dart';
 import 'package:pomowor/provider/test_mode.dart';
@@ -10,11 +11,13 @@ import 'package:just_audio/just_audio.dart';
 
 const _testModeSpeedUpRate = 50;
 
-class TimerNotifier extends StateNotifier<TimerState> {
+class TimerNotifier extends StateNotifier<TimerState>
+    with WidgetsBindingObserver {
   final Reader _reader;
 
   TimerNotifier(this._reader) : super(const TimerState()) {
     setTimer(20, false);
+    WidgetsBinding.instance!.addObserver(this);
   }
 
   Timer? _timer;
@@ -196,7 +199,19 @@ class TimerNotifier extends StateNotifier<TimerState> {
   }
 
   onDispose() {
+    WidgetsBinding.instance!.removeObserver(this);
     _player.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (this.state.isRunning == false) {
+      return;
+    }
+    if (state == AppLifecycleState.resumed) {
+      // Clear all notifications on resume
+      _reader(localNotificationProvider).cancelTimer();
+    }
   }
 }
 
