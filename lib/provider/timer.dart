@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audio_session/audio_session.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomowor/provider/app_foreground_state.dart';
 import 'package:pomowor/provider/local_notification.dart';
@@ -17,11 +18,28 @@ class TimerNotifier extends StateNotifier<TimerState> {
   final Reader _reader;
 
   TimerNotifier(this._reader) : super(const TimerState()) {
+    _initAudio();
     setTimer(20, false);
   }
 
   Timer? _timer;
-  final AudioPlayer _player = AudioPlayer();
+  late final AudioPlayer _player;
+
+  _initAudio() async {
+    _player = AudioPlayer(
+      /// Use manual audio session configuration
+      handleAudioSessionActivation: false,
+    );
+
+    /// Set audio mode to ambient so that the app does not stop background music
+    AudioSession.instance.then((session) async {
+      await session.configure(
+        const AudioSessionConfiguration(
+          avAudioSessionCategory: AVAudioSessionCategory.ambient,
+        ),
+      );
+    });
+  }
 
   /// Set timer in specified [min] minutes
   ///

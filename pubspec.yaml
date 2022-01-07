@@ -42,6 +42,7 @@ dependencies:
   freezed_annotation:
 
   just_audio: ^0.9.18
+  audio_session: ^0.1.6+1
 
   shared_preferences: ^2.0.11
 
