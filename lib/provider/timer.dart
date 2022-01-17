@@ -75,15 +75,7 @@ class TimerNotifier extends StateNotifier<TimerState> {
       state = state.copyWith(timeUntil: timeUntil);
     }
 
-    // Set notification
-    _reader(localNotificationProvider)
-      ..cancelTimer()
-      ..scheduledNotification(
-          "Current timer has ended!",
-          Duration(
-              seconds: _reader(testModeProvider).isTestMode
-                  ? (state.timeLeft ~/ _testModeSpeedUpRate)
-                  : state.timeLeft));
+    _setNotificationForCurrentTimer();
 
     _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       var diff = state.timeUntil!.difference(DateTime.now()).inSeconds;
@@ -217,6 +209,31 @@ class TimerNotifier extends StateNotifier<TimerState> {
   _playAudio() {
     _player.setAsset("asset/alarm.mp3");
     _player.play();
+  }
+
+  /// Set notification for current timer
+  _setNotificationForCurrentTimer() {
+    var message = "";
+
+    switch (_getNextMode()) {
+      case TimerMode.work:
+        message = "Time to work!";
+        break;
+      case TimerMode.shortBreak:
+        message = "Time to take a break!";
+        break;
+      case TimerMode.longBreak:
+        message = "Time to take a long break!";
+    }
+
+    _reader(localNotificationProvider)
+      ..cancelTimer()
+      ..scheduledNotification(
+          message,
+          Duration(
+              seconds: _reader(testModeProvider).isTestMode
+                  ? (state.timeLeft ~/ _testModeSpeedUpRate)
+                  : state.timeLeft));
   }
 
   stopAudio() {
