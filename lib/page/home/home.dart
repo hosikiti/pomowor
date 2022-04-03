@@ -5,6 +5,8 @@ import 'package:pomowor/provider/test_mode.dart';
 import 'package:pomowor/provider/timer.dart';
 import 'package:pomowor/provider/timer_history.dart';
 import 'package:pomowor/util/dialogs.dart';
+import 'package:pomowor/widget/timer_label.dart';
+import 'package:pomowor/widget/total_work_time.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -225,43 +227,5 @@ class HomePage extends ConsumerWidget {
         ),
       ),
     );
-  }
-}
-
-class TimerLabel extends StatelessWidget {
-  /// This widget shows time in "00:00" format
-  const TimerLabel({Key? key, required this.timeLeftSec}) : super(key: key);
-
-  final int timeLeftSec;
-
-  String get label {
-    String m, s;
-    final min = (timeLeftSec / 60).floor().toInt();
-    m = min.toString().padLeft(2, "0");
-    final sec = timeLeftSec % 60;
-    s = sec.toString().padLeft(2, "0");
-    return "$m:$s";
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(label, style: const TextStyle(fontSize: 80));
-  }
-}
-
-class TotalWorkTime extends ConsumerWidget {
-  /// Show total work time in minutes
-  const TotalWorkTime({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final total = ref.watch(timerHistoryProvider).workTimeTotal;
-    if (total.inMicroseconds == 0) {
-      return const Text("-");
-    }
-
-    final h = (total.inMinutes / 60).floor().toInt().toString().padLeft(2, '0');
-    final m = (total.inMinutes % 60).toInt().toString().padLeft(2, '0');
-
-    return Text("$h:$m:00");
   }
 }

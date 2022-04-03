@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomowor/provider/storage.dart';
 import 'package:pomowor/state/timer_history_state.dart';
@@ -32,7 +33,7 @@ class TimerHistory extends StateNotifier<TimerHistoryState> {
     try {
       state = TimerHistoryState.fromJson(json.decode(jsonValue));
     } catch (e) {
-      print("json decode error: $e");
+      debugPrint("$e");
     }
   }
 
