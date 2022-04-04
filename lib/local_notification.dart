@@ -4,11 +4,18 @@ import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
+// init local notification and request permissions if needed
 Future<FlutterLocalNotificationsPlugin> initLocalNotification() async {
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('ic_stat_access_alarm');
-  const initializationSettings =
-      InitializationSettings(android: initializationSettingsAndroid);
+  const IOSInitializationSettings initializationSettingsIOS =
+      IOSInitializationSettings(
+    requestAlertPermission: true,
+    requestBadgePermission: true,
+    requestSoundPermission: true,
+  );
+  const initializationSettings = InitializationSettings(
+      android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   await flutterLocalNotificationsPlugin.initialize(initializationSettings,
