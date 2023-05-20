@@ -10,4 +10,3 @@ Currently, Android only.
 
 - Add volume setting
 - Fix crash issue
-- 
