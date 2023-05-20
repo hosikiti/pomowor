@@ -5,3 +5,9 @@
 pomowor is a simple work-timer application inspired by Pomodoro Technique.
 
 Currently, Android only.
+
+## TODOs
+
+- Add volume setting
+- Fix crash issue
+- 
