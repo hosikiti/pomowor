@@ -10,6 +10,11 @@ class TimerLabel extends StatelessWidget {
     String m, s;
     final min = (timeLeftSec / 60).floor().toInt();
     m = min.toString().padLeft(2, "0");
+
+    if (min > 99) {
+      return "99:59";
+    }
+
     final sec = timeLeftSec % 60;
     s = sec.toString().padLeft(2, "0");
     return "$m:$s";

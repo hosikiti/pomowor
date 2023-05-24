@@ -7,12 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pomowor/local_notification.dart';
-import 'package:pomowor/main.dart';
-import 'package:pomowor/provider/local_notification.dart';
-import 'package:pomowor/provider/storage.dart';
 import 'package:pomowor/widget/timer_label.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   testWidgets('TimerLabel widget test', (WidgetTester tester) async {
@@ -21,6 +16,18 @@ void main() {
     ));
 
     expect(find.text('02:59'), findsOneWidget);
+
+    await tester.pumpWidget(const MaterialApp(
+      home: TimerLabel(timeLeftSec: 0),
+    ));
+
+    expect(find.text('00:00'), findsOneWidget);
+
+    await tester.pumpWidget(const MaterialApp(
+      home: TimerLabel(timeLeftSec: 999999),
+    ));
+
+    expect(find.text('99:59'), findsOneWidget);
   });
 
   // Create later
