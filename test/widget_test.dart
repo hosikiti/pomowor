@@ -29,20 +29,4 @@ void main() {
 
     expect(find.text('99:59'), findsOneWidget);
   });
-
-  // Create later
-  // testWidgets('App test', ((tester) async {
-  //   final sharedPref = await SharedPreferences.getInstance();
-  //   final localNotification = await initLocalNotification();
-
-  //   await tester.pumpWidget(ProviderScope(
-  //       overrides: [
-  //         storageProvider.overrideWithValue(sharedPref),
-  //         flutterLocalNotificationsProvider
-  //             .overrideWithValue(localNotification),
-  //       ],
-  //       child: MaterialApp(
-  //         home: App(),
-  //       )));
-  // }));
 }

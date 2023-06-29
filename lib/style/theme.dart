@@ -9,7 +9,7 @@ final _defaultWorkTheme = ThemeData.dark().copyWith(
       ),
   scaffoldBackgroundColor: Colors.red[700],
   textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(primary: Colors.white),
+    style: TextButton.styleFrom(foregroundColor: Colors.white),
   ),
 );
 
@@ -19,7 +19,7 @@ final _defaultBreakTheme = ThemeData.dark().copyWith(
       ),
   scaffoldBackgroundColor: Colors.green[700],
   textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(primary: Colors.white),
+    style: TextButton.styleFrom(foregroundColor: Colors.white),
   ),
 );
 

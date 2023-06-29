@@ -14,12 +14,15 @@ import 'package:just_audio/just_audio.dart';
 /// If the rate is 50, it makes the timer speed 50x faster!
 const _testModeSpeedUpRate = 50;
 
+/// Default timer duration in minutes
+const _defaultWorkDuration = 20;
+
 class TimerNotifier extends StateNotifier<TimerState> {
   final Reader _reader;
 
   TimerNotifier(this._reader) : super(const TimerState()) {
     _initAudio();
-    setTimer(20, false);
+    setTimer(_defaultWorkDuration, false);
   }
 
   Timer? _timer;
