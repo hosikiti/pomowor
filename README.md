@@ -8,5 +8,6 @@ Currently, Android only.
 
 ## TODOs
 
-- Add volume setting
-- Fix crash issue
+- Change the way of resetting total work time to one tap.
+- Add volume setting.
+- Fix crash issue.
