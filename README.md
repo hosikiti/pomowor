@@ -8,7 +8,6 @@ Currently, Android only.
 
 ## TODOs
 
-- Change the way of resetting total work time to one tap.
 - Add volume setting.
 - We should keep the time state in the storage in the case of crash or reboot.
 - Fix crash issue.
