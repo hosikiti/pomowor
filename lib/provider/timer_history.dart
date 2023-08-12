@@ -7,9 +7,9 @@ import 'package:pomowor/state/timer_history_state.dart';
 
 class TimerHistory extends StateNotifier<TimerHistoryState> {
   static const String _cacheKey = "timer_history";
-  final Reader _reader;
+  final Ref ref;
 
-  TimerHistory(this._reader)
+  TimerHistory(this.ref)
       : super(const TimerHistoryState(workTimeTotal: Duration())) {
     _restoreState();
   }
@@ -26,7 +26,7 @@ class TimerHistory extends StateNotifier<TimerHistoryState> {
   }
 
   _restoreState() {
-    final jsonValue = _reader(storageProvider).getString(_cacheKey);
+    final jsonValue = ref.read(storageProvider).getString(_cacheKey);
     if (jsonValue == null) {
       return;
     }
@@ -38,10 +38,10 @@ class TimerHistory extends StateNotifier<TimerHistoryState> {
   }
 
   _saveState() {
-    _reader(storageProvider).setString(_cacheKey, json.encode(state.toJson()));
+    ref.read(storageProvider).setString(_cacheKey, json.encode(state.toJson()));
   }
 }
 
 final timerHistoryProvider =
     StateNotifierProvider<TimerHistory, TimerHistoryState>(
-        (ref) => TimerHistory(ref.read));
+        (ref) => TimerHistory(ref));

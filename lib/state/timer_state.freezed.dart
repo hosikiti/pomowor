@@ -1,6 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'timer_state.dart';
 
@@ -11,44 +12,7 @@ part of 'timer_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$TimerStateTearOff {
-  const _$TimerStateTearOff();
-
-  _TimerState call(
-      {int workDuration = 20,
-      int workCount = 0,
-      int workCountForLongBreak = 4,
-      bool isRunning = false,
-      bool isReset = true,
-      int currentTimerMinutes = 20,
-      DateTime? timeUntil,
-      int timeLeft = 0,
-      int increaseMinutesBy = 5,
-      TimerMode mode = TimerMode.work,
-      int shortBreakDuration = 5,
-      int longBreakDuration = 15}) {
-    return _TimerState(
-      workDuration: workDuration,
-      workCount: workCount,
-      workCountForLongBreak: workCountForLongBreak,
-      isRunning: isRunning,
-      isReset: isReset,
-      currentTimerMinutes: currentTimerMinutes,
-      timeUntil: timeUntil,
-      timeLeft: timeLeft,
-      increaseMinutesBy: increaseMinutesBy,
-      mode: mode,
-      shortBreakDuration: shortBreakDuration,
-      longBreakDuration: longBreakDuration,
-    );
-  }
-}
-
-/// @nodoc
-const $TimerState = _$TimerStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$TimerState {
@@ -81,7 +45,8 @@ mixin _$TimerState {
 abstract class $TimerStateCopyWith<$Res> {
   factory $TimerStateCopyWith(
           TimerState value, $Res Function(TimerState) then) =
-      _$TimerStateCopyWithImpl<$Res>;
+      _$TimerStateCopyWithImpl<$Res, TimerState>;
+  @useResult
   $Res call(
       {int workDuration,
       int workCount,
@@ -98,87 +63,92 @@ abstract class $TimerStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TimerStateCopyWithImpl<$Res> implements $TimerStateCopyWith<$Res> {
+class _$TimerStateCopyWithImpl<$Res, $Val extends TimerState>
+    implements $TimerStateCopyWith<$Res> {
   _$TimerStateCopyWithImpl(this._value, this._then);
 
-  final TimerState _value;
   // ignore: unused_field
-  final $Res Function(TimerState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? workDuration = freezed,
-    Object? workCount = freezed,
-    Object? workCountForLongBreak = freezed,
-    Object? isRunning = freezed,
-    Object? isReset = freezed,
-    Object? currentTimerMinutes = freezed,
+    Object? workDuration = null,
+    Object? workCount = null,
+    Object? workCountForLongBreak = null,
+    Object? isRunning = null,
+    Object? isReset = null,
+    Object? currentTimerMinutes = null,
     Object? timeUntil = freezed,
-    Object? timeLeft = freezed,
-    Object? increaseMinutesBy = freezed,
-    Object? mode = freezed,
-    Object? shortBreakDuration = freezed,
-    Object? longBreakDuration = freezed,
+    Object? timeLeft = null,
+    Object? increaseMinutesBy = null,
+    Object? mode = null,
+    Object? shortBreakDuration = null,
+    Object? longBreakDuration = null,
   }) {
     return _then(_value.copyWith(
-      workDuration: workDuration == freezed
+      workDuration: null == workDuration
           ? _value.workDuration
           : workDuration // ignore: cast_nullable_to_non_nullable
               as int,
-      workCount: workCount == freezed
+      workCount: null == workCount
           ? _value.workCount
           : workCount // ignore: cast_nullable_to_non_nullable
               as int,
-      workCountForLongBreak: workCountForLongBreak == freezed
+      workCountForLongBreak: null == workCountForLongBreak
           ? _value.workCountForLongBreak
           : workCountForLongBreak // ignore: cast_nullable_to_non_nullable
               as int,
-      isRunning: isRunning == freezed
+      isRunning: null == isRunning
           ? _value.isRunning
           : isRunning // ignore: cast_nullable_to_non_nullable
               as bool,
-      isReset: isReset == freezed
+      isReset: null == isReset
           ? _value.isReset
           : isReset // ignore: cast_nullable_to_non_nullable
               as bool,
-      currentTimerMinutes: currentTimerMinutes == freezed
+      currentTimerMinutes: null == currentTimerMinutes
           ? _value.currentTimerMinutes
           : currentTimerMinutes // ignore: cast_nullable_to_non_nullable
               as int,
-      timeUntil: timeUntil == freezed
+      timeUntil: freezed == timeUntil
           ? _value.timeUntil
           : timeUntil // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      timeLeft: timeLeft == freezed
+      timeLeft: null == timeLeft
           ? _value.timeLeft
           : timeLeft // ignore: cast_nullable_to_non_nullable
               as int,
-      increaseMinutesBy: increaseMinutesBy == freezed
+      increaseMinutesBy: null == increaseMinutesBy
           ? _value.increaseMinutesBy
           : increaseMinutesBy // ignore: cast_nullable_to_non_nullable
               as int,
-      mode: mode == freezed
+      mode: null == mode
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
               as TimerMode,
-      shortBreakDuration: shortBreakDuration == freezed
+      shortBreakDuration: null == shortBreakDuration
           ? _value.shortBreakDuration
           : shortBreakDuration // ignore: cast_nullable_to_non_nullable
               as int,
-      longBreakDuration: longBreakDuration == freezed
+      longBreakDuration: null == longBreakDuration
           ? _value.longBreakDuration
           : longBreakDuration // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$TimerStateCopyWith<$Res> implements $TimerStateCopyWith<$Res> {
-  factory _$TimerStateCopyWith(
-          _TimerState value, $Res Function(_TimerState) then) =
-      __$TimerStateCopyWithImpl<$Res>;
+abstract class _$$_TimerStateCopyWith<$Res>
+    implements $TimerStateCopyWith<$Res> {
+  factory _$$_TimerStateCopyWith(
+          _$_TimerState value, $Res Function(_$_TimerState) then) =
+      __$$_TimerStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int workDuration,
       int workCount,
@@ -195,76 +165,75 @@ abstract class _$TimerStateCopyWith<$Res> implements $TimerStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$TimerStateCopyWithImpl<$Res> extends _$TimerStateCopyWithImpl<$Res>
-    implements _$TimerStateCopyWith<$Res> {
-  __$TimerStateCopyWithImpl(
-      _TimerState _value, $Res Function(_TimerState) _then)
-      : super(_value, (v) => _then(v as _TimerState));
+class __$$_TimerStateCopyWithImpl<$Res>
+    extends _$TimerStateCopyWithImpl<$Res, _$_TimerState>
+    implements _$$_TimerStateCopyWith<$Res> {
+  __$$_TimerStateCopyWithImpl(
+      _$_TimerState _value, $Res Function(_$_TimerState) _then)
+      : super(_value, _then);
 
-  @override
-  _TimerState get _value => super._value as _TimerState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? workDuration = freezed,
-    Object? workCount = freezed,
-    Object? workCountForLongBreak = freezed,
-    Object? isRunning = freezed,
-    Object? isReset = freezed,
-    Object? currentTimerMinutes = freezed,
+    Object? workDuration = null,
+    Object? workCount = null,
+    Object? workCountForLongBreak = null,
+    Object? isRunning = null,
+    Object? isReset = null,
+    Object? currentTimerMinutes = null,
     Object? timeUntil = freezed,
-    Object? timeLeft = freezed,
-    Object? increaseMinutesBy = freezed,
-    Object? mode = freezed,
-    Object? shortBreakDuration = freezed,
-    Object? longBreakDuration = freezed,
+    Object? timeLeft = null,
+    Object? increaseMinutesBy = null,
+    Object? mode = null,
+    Object? shortBreakDuration = null,
+    Object? longBreakDuration = null,
   }) {
-    return _then(_TimerState(
-      workDuration: workDuration == freezed
+    return _then(_$_TimerState(
+      workDuration: null == workDuration
           ? _value.workDuration
           : workDuration // ignore: cast_nullable_to_non_nullable
               as int,
-      workCount: workCount == freezed
+      workCount: null == workCount
           ? _value.workCount
           : workCount // ignore: cast_nullable_to_non_nullable
               as int,
-      workCountForLongBreak: workCountForLongBreak == freezed
+      workCountForLongBreak: null == workCountForLongBreak
           ? _value.workCountForLongBreak
           : workCountForLongBreak // ignore: cast_nullable_to_non_nullable
               as int,
-      isRunning: isRunning == freezed
+      isRunning: null == isRunning
           ? _value.isRunning
           : isRunning // ignore: cast_nullable_to_non_nullable
               as bool,
-      isReset: isReset == freezed
+      isReset: null == isReset
           ? _value.isReset
           : isReset // ignore: cast_nullable_to_non_nullable
               as bool,
-      currentTimerMinutes: currentTimerMinutes == freezed
+      currentTimerMinutes: null == currentTimerMinutes
           ? _value.currentTimerMinutes
           : currentTimerMinutes // ignore: cast_nullable_to_non_nullable
               as int,
-      timeUntil: timeUntil == freezed
+      timeUntil: freezed == timeUntil
           ? _value.timeUntil
           : timeUntil // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      timeLeft: timeLeft == freezed
+      timeLeft: null == timeLeft
           ? _value.timeLeft
           : timeLeft // ignore: cast_nullable_to_non_nullable
               as int,
-      increaseMinutesBy: increaseMinutesBy == freezed
+      increaseMinutesBy: null == increaseMinutesBy
           ? _value.increaseMinutesBy
           : increaseMinutesBy // ignore: cast_nullable_to_non_nullable
               as int,
-      mode: mode == freezed
+      mode: null == mode
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
               as TimerMode,
-      shortBreakDuration: shortBreakDuration == freezed
+      shortBreakDuration: null == shortBreakDuration
           ? _value.shortBreakDuration
           : shortBreakDuration // ignore: cast_nullable_to_non_nullable
               as int,
-      longBreakDuration: longBreakDuration == freezed
+      longBreakDuration: null == longBreakDuration
           ? _value.longBreakDuration
           : longBreakDuration // ignore: cast_nullable_to_non_nullable
               as int,
@@ -289,40 +258,49 @@ class _$_TimerState with DiagnosticableTreeMixin implements _TimerState {
       this.shortBreakDuration = 5,
       this.longBreakDuration = 15});
 
-  @JsonKey(defaultValue: 20)
-  @override // work time duration
+// work time duration
+  @override
+  @JsonKey()
   final int workDuration;
-  @JsonKey(defaultValue: 0)
-  @override // work time count
+// work time count
+  @override
+  @JsonKey()
   final int workCount;
-  @JsonKey(defaultValue: 4)
-  @override // how many count needed to trigger long break
+// how many count needed to trigger long break
+  @override
+  @JsonKey()
   final int workCountForLongBreak;
-  @JsonKey(defaultValue: false)
-  @override // timer running state
+// timer running state
+  @override
+  @JsonKey()
   final bool isRunning;
-  @JsonKey(defaultValue: true)
-  @override // timer reset state
+// timer reset state
+  @override
+  @JsonKey()
   final bool isReset;
-  @JsonKey(defaultValue: 20)
-  @override // current timer's duration
+// current timer's duration
+  @override
+  @JsonKey()
   final int currentTimerMinutes;
-  @override // when the current timer stops
+// when the current timer stops
+  @override
   final DateTime? timeUntil;
-  @JsonKey(defaultValue: 0)
-  @override // how much time left
+// how much time left
+  @override
+  @JsonKey()
   final int timeLeft;
-  @JsonKey(defaultValue: 5)
-  @override // how many minutes will be added/subtraced on tap access/slow button
+// how many minutes will be added/subtraced on tap access/slow button
+  @override
+  @JsonKey()
   final int increaseMinutesBy;
-  @JsonKey(defaultValue: TimerMode.work)
   @override
+  @JsonKey()
   final TimerMode mode;
-  @JsonKey(defaultValue: 5)
   @override
+  @JsonKey()
   final int shortBreakDuration;
-  @JsonKey(defaultValue: 15)
   @override
+  @JsonKey()
   final int longBreakDuration;
 
   @override
@@ -353,7 +331,7 @@ class _$_TimerState with DiagnosticableTreeMixin implements _TimerState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TimerState &&
+            other is _$_TimerState &&
             (identical(other.workDuration, workDuration) ||
                 other.workDuration == workDuration) &&
             (identical(other.workCount, workCount) ||
@@ -396,24 +374,25 @@ class _$_TimerState with DiagnosticableTreeMixin implements _TimerState {
 
   @JsonKey(ignore: true)
   @override
-  _$TimerStateCopyWith<_TimerState> get copyWith =>
-      __$TimerStateCopyWithImpl<_TimerState>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_TimerStateCopyWith<_$_TimerState> get copyWith =>
+      __$$_TimerStateCopyWithImpl<_$_TimerState>(this, _$identity);
 }
 
 abstract class _TimerState implements TimerState {
   const factory _TimerState(
-      {int workDuration,
-      int workCount,
-      int workCountForLongBreak,
-      bool isRunning,
-      bool isReset,
-      int currentTimerMinutes,
-      DateTime? timeUntil,
-      int timeLeft,
-      int increaseMinutesBy,
-      TimerMode mode,
-      int shortBreakDuration,
-      int longBreakDuration}) = _$_TimerState;
+      {final int workDuration,
+      final int workCount,
+      final int workCountForLongBreak,
+      final bool isRunning,
+      final bool isReset,
+      final int currentTimerMinutes,
+      final DateTime? timeUntil,
+      final int timeLeft,
+      final int increaseMinutesBy,
+      final TimerMode mode,
+      final int shortBreakDuration,
+      final int longBreakDuration}) = _$_TimerState;
 
   @override // work time duration
   int get workDuration;
@@ -441,6 +420,6 @@ abstract class _TimerState implements TimerState {
   int get longBreakDuration;
   @override
   @JsonKey(ignore: true)
-  _$TimerStateCopyWith<_TimerState> get copyWith =>
+  _$$_TimerStateCopyWith<_$_TimerState> get copyWith =>
       throw _privateConstructorUsedError;
 }

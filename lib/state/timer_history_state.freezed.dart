@@ -1,6 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'timer_history_state.dart';
 
@@ -11,29 +12,11 @@ part of 'timer_history_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 TimerHistoryState _$TimerHistoryStateFromJson(Map<String, dynamic> json) {
   return _TimerHistoryState.fromJson(json);
 }
-
-/// @nodoc
-class _$TimerHistoryStateTearOff {
-  const _$TimerHistoryStateTearOff();
-
-  _TimerHistoryState call({required Duration workTimeTotal}) {
-    return _TimerHistoryState(
-      workTimeTotal: workTimeTotal,
-    );
-  }
-
-  TimerHistoryState fromJson(Map<String, Object?> json) {
-    return TimerHistoryState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $TimerHistoryState = _$TimerHistoryStateTearOff();
 
 /// @nodoc
 mixin _$TimerHistoryState {
@@ -49,59 +32,61 @@ mixin _$TimerHistoryState {
 abstract class $TimerHistoryStateCopyWith<$Res> {
   factory $TimerHistoryStateCopyWith(
           TimerHistoryState value, $Res Function(TimerHistoryState) then) =
-      _$TimerHistoryStateCopyWithImpl<$Res>;
+      _$TimerHistoryStateCopyWithImpl<$Res, TimerHistoryState>;
+  @useResult
   $Res call({Duration workTimeTotal});
 }
 
 /// @nodoc
-class _$TimerHistoryStateCopyWithImpl<$Res>
+class _$TimerHistoryStateCopyWithImpl<$Res, $Val extends TimerHistoryState>
     implements $TimerHistoryStateCopyWith<$Res> {
   _$TimerHistoryStateCopyWithImpl(this._value, this._then);
 
-  final TimerHistoryState _value;
   // ignore: unused_field
-  final $Res Function(TimerHistoryState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? workTimeTotal = freezed,
+    Object? workTimeTotal = null,
   }) {
     return _then(_value.copyWith(
-      workTimeTotal: workTimeTotal == freezed
+      workTimeTotal: null == workTimeTotal
           ? _value.workTimeTotal
           : workTimeTotal // ignore: cast_nullable_to_non_nullable
               as Duration,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$TimerHistoryStateCopyWith<$Res>
+abstract class _$$_TimerHistoryStateCopyWith<$Res>
     implements $TimerHistoryStateCopyWith<$Res> {
-  factory _$TimerHistoryStateCopyWith(
-          _TimerHistoryState value, $Res Function(_TimerHistoryState) then) =
-      __$TimerHistoryStateCopyWithImpl<$Res>;
+  factory _$$_TimerHistoryStateCopyWith(_$_TimerHistoryState value,
+          $Res Function(_$_TimerHistoryState) then) =
+      __$$_TimerHistoryStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({Duration workTimeTotal});
 }
 
 /// @nodoc
-class __$TimerHistoryStateCopyWithImpl<$Res>
-    extends _$TimerHistoryStateCopyWithImpl<$Res>
-    implements _$TimerHistoryStateCopyWith<$Res> {
-  __$TimerHistoryStateCopyWithImpl(
-      _TimerHistoryState _value, $Res Function(_TimerHistoryState) _then)
-      : super(_value, (v) => _then(v as _TimerHistoryState));
+class __$$_TimerHistoryStateCopyWithImpl<$Res>
+    extends _$TimerHistoryStateCopyWithImpl<$Res, _$_TimerHistoryState>
+    implements _$$_TimerHistoryStateCopyWith<$Res> {
+  __$$_TimerHistoryStateCopyWithImpl(
+      _$_TimerHistoryState _value, $Res Function(_$_TimerHistoryState) _then)
+      : super(_value, _then);
 
-  @override
-  _TimerHistoryState get _value => super._value as _TimerHistoryState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? workTimeTotal = freezed,
+    Object? workTimeTotal = null,
   }) {
-    return _then(_TimerHistoryState(
-      workTimeTotal: workTimeTotal == freezed
+    return _then(_$_TimerHistoryState(
+      workTimeTotal: null == workTimeTotal
           ? _value.workTimeTotal
           : workTimeTotal // ignore: cast_nullable_to_non_nullable
               as Duration,
@@ -139,27 +124,32 @@ class _$_TimerHistoryState
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TimerHistoryState &&
+            other is _$_TimerHistoryState &&
             (identical(other.workTimeTotal, workTimeTotal) ||
                 other.workTimeTotal == workTimeTotal));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, workTimeTotal);
 
   @JsonKey(ignore: true)
   @override
-  _$TimerHistoryStateCopyWith<_TimerHistoryState> get copyWith =>
-      __$TimerHistoryStateCopyWithImpl<_TimerHistoryState>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_TimerHistoryStateCopyWith<_$_TimerHistoryState> get copyWith =>
+      __$$_TimerHistoryStateCopyWithImpl<_$_TimerHistoryState>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TimerHistoryStateToJson(this);
+    return _$$_TimerHistoryStateToJson(
+      this,
+    );
   }
 }
 
 abstract class _TimerHistoryState implements TimerHistoryState {
-  const factory _TimerHistoryState({required Duration workTimeTotal}) =
+  const factory _TimerHistoryState({required final Duration workTimeTotal}) =
       _$_TimerHistoryState;
 
   factory _TimerHistoryState.fromJson(Map<String, dynamic> json) =
@@ -169,6 +159,6 @@ abstract class _TimerHistoryState implements TimerHistoryState {
   Duration get workTimeTotal;
   @override
   @JsonKey(ignore: true)
-  _$TimerHistoryStateCopyWith<_TimerHistoryState> get copyWith =>
+  _$$_TimerHistoryStateCopyWith<_$_TimerHistoryState> get copyWith =>
       throw _privateConstructorUsedError;
 }

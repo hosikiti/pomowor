@@ -1,6 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'test_mode_state.dart';
 
@@ -11,22 +12,7 @@ part of 'test_mode_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$TestModeStateTearOff {
-  const _$TestModeStateTearOff();
-
-  _TestModeState call({int counter = 0, bool isTestMode = false}) {
-    return _TestModeState(
-      counter: counter,
-      isTestMode: isTestMode,
-    );
-  }
-}
-
-/// @nodoc
-const $TestModeState = _$TestModeStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$TestModeState {
@@ -42,69 +28,71 @@ mixin _$TestModeState {
 abstract class $TestModeStateCopyWith<$Res> {
   factory $TestModeStateCopyWith(
           TestModeState value, $Res Function(TestModeState) then) =
-      _$TestModeStateCopyWithImpl<$Res>;
+      _$TestModeStateCopyWithImpl<$Res, TestModeState>;
+  @useResult
   $Res call({int counter, bool isTestMode});
 }
 
 /// @nodoc
-class _$TestModeStateCopyWithImpl<$Res>
+class _$TestModeStateCopyWithImpl<$Res, $Val extends TestModeState>
     implements $TestModeStateCopyWith<$Res> {
   _$TestModeStateCopyWithImpl(this._value, this._then);
 
-  final TestModeState _value;
   // ignore: unused_field
-  final $Res Function(TestModeState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? counter = freezed,
-    Object? isTestMode = freezed,
+    Object? counter = null,
+    Object? isTestMode = null,
   }) {
     return _then(_value.copyWith(
-      counter: counter == freezed
+      counter: null == counter
           ? _value.counter
           : counter // ignore: cast_nullable_to_non_nullable
               as int,
-      isTestMode: isTestMode == freezed
+      isTestMode: null == isTestMode
           ? _value.isTestMode
           : isTestMode // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$TestModeStateCopyWith<$Res>
+abstract class _$$_TestModeStateCopyWith<$Res>
     implements $TestModeStateCopyWith<$Res> {
-  factory _$TestModeStateCopyWith(
-          _TestModeState value, $Res Function(_TestModeState) then) =
-      __$TestModeStateCopyWithImpl<$Res>;
+  factory _$$_TestModeStateCopyWith(
+          _$_TestModeState value, $Res Function(_$_TestModeState) then) =
+      __$$_TestModeStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int counter, bool isTestMode});
 }
 
 /// @nodoc
-class __$TestModeStateCopyWithImpl<$Res>
-    extends _$TestModeStateCopyWithImpl<$Res>
-    implements _$TestModeStateCopyWith<$Res> {
-  __$TestModeStateCopyWithImpl(
-      _TestModeState _value, $Res Function(_TestModeState) _then)
-      : super(_value, (v) => _then(v as _TestModeState));
+class __$$_TestModeStateCopyWithImpl<$Res>
+    extends _$TestModeStateCopyWithImpl<$Res, _$_TestModeState>
+    implements _$$_TestModeStateCopyWith<$Res> {
+  __$$_TestModeStateCopyWithImpl(
+      _$_TestModeState _value, $Res Function(_$_TestModeState) _then)
+      : super(_value, _then);
 
-  @override
-  _TestModeState get _value => super._value as _TestModeState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? counter = freezed,
-    Object? isTestMode = freezed,
+    Object? counter = null,
+    Object? isTestMode = null,
   }) {
-    return _then(_TestModeState(
-      counter: counter == freezed
+    return _then(_$_TestModeState(
+      counter: null == counter
           ? _value.counter
           : counter // ignore: cast_nullable_to_non_nullable
               as int,
-      isTestMode: isTestMode == freezed
+      isTestMode: null == isTestMode
           ? _value.isTestMode
           : isTestMode // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -117,11 +105,11 @@ class __$TestModeStateCopyWithImpl<$Res>
 class _$_TestModeState with DiagnosticableTreeMixin implements _TestModeState {
   const _$_TestModeState({this.counter = 0, this.isTestMode = false});
 
-  @JsonKey(defaultValue: 0)
   @override
+  @JsonKey()
   final int counter;
-  @JsonKey(defaultValue: false)
   @override
+  @JsonKey()
   final bool isTestMode;
 
   @override
@@ -142,7 +130,7 @@ class _$_TestModeState with DiagnosticableTreeMixin implements _TestModeState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TestModeState &&
+            other is _$_TestModeState &&
             (identical(other.counter, counter) || other.counter == counter) &&
             (identical(other.isTestMode, isTestMode) ||
                 other.isTestMode == isTestMode));
@@ -153,12 +141,13 @@ class _$_TestModeState with DiagnosticableTreeMixin implements _TestModeState {
 
   @JsonKey(ignore: true)
   @override
-  _$TestModeStateCopyWith<_TestModeState> get copyWith =>
-      __$TestModeStateCopyWithImpl<_TestModeState>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_TestModeStateCopyWith<_$_TestModeState> get copyWith =>
+      __$$_TestModeStateCopyWithImpl<_$_TestModeState>(this, _$identity);
 }
 
 abstract class _TestModeState implements TestModeState {
-  const factory _TestModeState({int counter, bool isTestMode}) =
+  const factory _TestModeState({final int counter, final bool isTestMode}) =
       _$_TestModeState;
 
   @override
@@ -167,6 +156,6 @@ abstract class _TestModeState implements TestModeState {
   bool get isTestMode;
   @override
   @JsonKey(ignore: true)
-  _$TestModeStateCopyWith<_TestModeState> get copyWith =>
+  _$$_TestModeStateCopyWith<_$_TestModeState> get copyWith =>
       throw _privateConstructorUsedError;
 }

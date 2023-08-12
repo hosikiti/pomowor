@@ -40,9 +40,9 @@ class HomePage extends ConsumerWidget {
                         }
                       },
                       onPressed: () async {},
-                      child: Wrap(
+                      child: const Wrap(
                         spacing: 4,
-                        children: const [
+                        children: [
                           Text("Work Total",
                               style: TextStyle(color: Colors.white70)),
                           TotalWorkTime(),
@@ -54,16 +54,16 @@ class HomePage extends ConsumerWidget {
                 child: Consumer(
                   /// draw base circle
                   /// as it is not changed overtime, use child prop so that this widget will be used as cache.
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(32.0),
+                        padding: EdgeInsets.all(32.0),
                         child: AspectRatio(
                             aspectRatio: 1,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: const [
+                              children: [
                                 Expanded(
                                   child: CircularProgressIndicator(
                                     strokeWidth: 1,
@@ -136,11 +136,8 @@ class HomePage extends ConsumerWidget {
                           minimumSize: const Size(60, 60),
                           shape: const CircleBorder(),
                         ),
-                        child: Column(
-                          children: const [
-                            Icon(CupertinoIcons.minus),
-                            Text("Slow")
-                          ],
+                        child: const Column(
+                          children: [Icon(CupertinoIcons.minus), Text("Slow")],
                         )),
                     ElevatedButton(
                       child: Icon(
@@ -176,11 +173,8 @@ class HomePage extends ConsumerWidget {
                           minimumSize: const Size(60, 60),
                           shape: const CircleBorder(),
                         ),
-                        child: Column(
-                          children: const [
-                            Icon(CupertinoIcons.plus),
-                            Text("Accel")
-                          ],
+                        child: const Column(
+                          children: [Icon(CupertinoIcons.plus), Text("Accel")],
                         )),
                   ],
                 ),

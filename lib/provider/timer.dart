@@ -18,9 +18,9 @@ const _testModeSpeedUpRate = 50;
 const _defaultWorkDuration = 20;
 
 class TimerNotifier extends StateNotifier<TimerState> {
-  final Reader _reader;
+  final Ref _ref;
 
-  TimerNotifier(this._reader) : super(const TimerState()) {
+  TimerNotifier(this._ref) : super(const TimerState()) {
     _initAudio();
     setTimer(_defaultWorkDuration, false);
   }
@@ -84,7 +84,7 @@ class TimerNotifier extends StateNotifier<TimerState> {
       var diff = state.timeUntil!.difference(DateTime.now()).inSeconds;
 
       // If testmode is true, timer speed will be xx times faster!
-      if (_reader(testModeProvider).isTestMode) {
+      if (_ref.read(testModeProvider).isTestMode) {
         final timePassed = (state.currentTimerMinutes * 60) - diff;
         diff = (state.currentTimerMinutes * 60) -
             (timePassed * _testModeSpeedUpRate);
@@ -94,8 +94,8 @@ class TimerNotifier extends StateNotifier<TimerState> {
           state.copyWith(timeLeft: diff, isRunning: diff >= 0, isReset: false);
       if (diff <= 0) {
         // Do not show notification when the app is foreground
-        if (_reader(appForegroundStateProvider)) {
-          _reader(localNotificationProvider).cancelTimer();
+        if (_ref.read(appForegroundStateProvider)) {
+          _ref.read(localNotificationProvider).cancelTimer();
         }
         _onTimerDone();
       }
@@ -106,7 +106,7 @@ class TimerNotifier extends StateNotifier<TimerState> {
     state = state.copyWith(isRunning: false);
     _timer?.cancel();
     if (clearNotification) {
-      _reader(localNotificationProvider).cancelTimer();
+      _ref.read(localNotificationProvider).cancelTimer();
     }
   }
 
@@ -116,7 +116,8 @@ class TimerNotifier extends StateNotifier<TimerState> {
 
     if (state.mode == TimerMode.work) {
       // add to work time history
-      _reader(timerHistoryProvider.notifier)
+      _ref
+          .read(timerHistoryProvider.notifier)
           .addWorkTime(state.currentTimerMinutes);
     }
 
@@ -229,12 +230,12 @@ class TimerNotifier extends StateNotifier<TimerState> {
         message = "Time to take a long break!";
     }
 
-    _reader(localNotificationProvider)
+    _ref.read(localNotificationProvider)
       ..cancelTimer()
       ..scheduledNotification(
           message,
           Duration(
-              seconds: _reader(testModeProvider).isTestMode
+              seconds: _ref.read(testModeProvider).isTestMode
                   ? (state.timeLeft ~/ _testModeSpeedUpRate)
                   : state.timeLeft));
   }
@@ -248,7 +249,7 @@ class TimerNotifier extends StateNotifier<TimerState> {
     if (!state.isRunning) {
       // Clear all notifications on resume so that
       // the user will not see notifications after activating the app after the timer ends
-      _reader(localNotificationProvider).cancelTimer();
+      _ref.read(localNotificationProvider).cancelTimer();
     }
   }
 
@@ -259,7 +260,7 @@ class TimerNotifier extends StateNotifier<TimerState> {
 
 final timerNotifierProvider =
     StateNotifierProvider<TimerNotifier, TimerState>((ref) {
-  final instance = TimerNotifier(ref.read);
+  final instance = TimerNotifier(ref);
   ref.onDispose(() {
     instance.dispose();
   });
