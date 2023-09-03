@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomowor/provider/app_foreground_state.dart';
 import 'package:pomowor/provider/local_notification.dart';
 import 'package:pomowor/provider/test_mode.dart';
-import 'package:pomowor/provider/timer_history.dart';
 import 'package:pomowor/state/timer_mode.dart';
 import 'package:pomowor/state/timer_state.dart';
 import 'package:just_audio/just_audio.dart';
@@ -113,14 +112,6 @@ class TimerNotifier extends StateNotifier<TimerState> {
   void _onTimerDone() {
     stopTimer();
     _playAudio();
-
-    if (state.mode == TimerMode.work) {
-      // add to work time history
-      _ref
-          .read(timerHistoryProvider.notifier)
-          .addWorkTime(state.currentTimerMinutes);
-    }
-
     _switchMode();
   }
 

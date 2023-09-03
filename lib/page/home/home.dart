@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomowor/provider/test_mode.dart';
 import 'package:pomowor/provider/timer.dart';
-import 'package:pomowor/provider/timer_history.dart';
 import 'package:pomowor/util/dialogs.dart';
 import 'package:pomowor/widget/timer_label.dart';
-import 'package:pomowor/widget/total_work_time.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,32 +22,6 @@ class HomePage extends ConsumerWidget {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
-                child: Align(
-                    alignment: Alignment.topRight,
-                    child: TextButton(
-                      onLongPress: () async {
-                        final ok = await showConfirmDialog(
-                            context, "Reset work total time?");
-                        if (ok) {
-                          ref
-                              .read(timerHistoryProvider.notifier)
-                              .clearWorkTime();
-                        }
-                      },
-                      onPressed: () async {},
-                      child: const Wrap(
-                        spacing: 4,
-                        children: [
-                          Text("Work Total",
-                              style: TextStyle(color: Colors.white70)),
-                          TotalWorkTime(),
-                        ],
-                      ),
-                    )),
-              ),
               Expanded(
                 child: Consumer(
                   /// draw base circle
@@ -137,7 +109,7 @@ class HomePage extends ConsumerWidget {
                           shape: const CircleBorder(),
                         ),
                         child: const Column(
-                          children: [Icon(CupertinoIcons.minus), Text("Slow")],
+                          children: [Icon(CupertinoIcons.minus)],
                         )),
                     ElevatedButton(
                       child: Icon(
@@ -174,7 +146,7 @@ class HomePage extends ConsumerWidget {
                           shape: const CircleBorder(),
                         ),
                         child: const Column(
-                          children: [Icon(CupertinoIcons.plus), Text("Accel")],
+                          children: [Icon(CupertinoIcons.plus)],
                         )),
                   ],
                 ),
