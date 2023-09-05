@@ -60,7 +60,12 @@ android {
 
     signingConfigs {
         release {
-            if(keystorePropertiesFile.exists()){
+            if (System.getenv()["CI"]) {
+                storeFile file(System.getenv()["CM_KEYSTORE_PATH"])
+                storePassword System.getenv()["CM_KEYSTORE_PASSWORD"]
+                keyAlias System.getenv()["CM_KEY_ALIAS"]
+                keyPassword System.getenv()["CM_KEY_PASSWORD"]                
+            } else if(keystorePropertiesFile.exists()){
                 def keystoreProperties = new Properties()
                 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
                 keyAlias keystoreProperties['keyAlias']
