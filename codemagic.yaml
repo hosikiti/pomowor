@@ -1,13 +1,16 @@
 workflows:
     build:
         name: Android 
-        max_build_duration: 300
+        max_build_duration: 120
         instance_type: mac_mini_m1
         environment:
           flutter: stable
           android_signing:
             - Pomowor Key
           xcode: latest
+        cache:
+          cache_paths:
+            - ~/.pub-cache
         scripts:
           - name: Set up local.properties
             script: | 
