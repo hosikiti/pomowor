@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pomowor/provider/timer.dart';
-import 'package:pomowor/state/timer_mode.dart';
+import 'package:pomowor/feature/timer/provider/timer.dart';
+import 'package:pomowor/feature/timer/timer_types.dart';
 
 final _defaultWorkTheme = ThemeData.dark().copyWith(
   colorScheme: ThemeData.dark().colorScheme.copyWith(

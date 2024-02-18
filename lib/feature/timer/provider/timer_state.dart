@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:pomowor/state/timer_mode.dart';
+import 'package:pomowor/feature/timer/timer_types.dart';
 part 'timer_state.freezed.dart';
 
 @freezed

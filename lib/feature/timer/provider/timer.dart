@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pomowor/provider/app_foreground_state.dart';
-import 'package:pomowor/provider/local_notification.dart';
-import 'package:pomowor/provider/test_mode.dart';
-import 'package:pomowor/state/timer_mode.dart';
-import 'package:pomowor/state/timer_state.dart';
+import 'package:pomowor/common/provider/app_foreground_state.dart';
+import 'package:pomowor/common/provider/local_notification.dart';
+import 'package:pomowor/feature/timer/provider/test_mode.dart';
+import 'package:pomowor/feature/timer/timer_types.dart';
+import 'package:pomowor/feature/timer/provider/timer_state.dart';
 import 'package:just_audio/just_audio.dart';
 
 /// Speed up rate for test mode

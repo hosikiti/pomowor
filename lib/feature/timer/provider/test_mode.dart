@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pomowor/state/test_mode_state.dart';
+import 'package:pomowor/feature/timer/provider/test_mode_state.dart';
 
 class TestMode extends StateNotifier<TestModeState> {
   /// TestMode handles app's testing mode.

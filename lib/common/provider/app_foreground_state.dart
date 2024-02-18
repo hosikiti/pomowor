@@ -21,3 +21,8 @@ class AppForegroundState extends StateNotifier<bool>
     }
   }
 }
+
+/// Provide app's foreground state
+final appForegroundStateProvider =
+    StateNotifierProvider<AppForegroundState, bool>(
+        (ref) => AppForegroundState());
