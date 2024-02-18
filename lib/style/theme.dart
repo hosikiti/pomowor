@@ -11,6 +11,10 @@ final _defaultWorkTheme = ThemeData.dark().copyWith(
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(foregroundColor: Colors.white),
   ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.red[300], foregroundColor: Colors.white),
+  ),
 );
 
 final _defaultBreakTheme = ThemeData.dark().copyWith(
@@ -20,6 +24,10 @@ final _defaultBreakTheme = ThemeData.dark().copyWith(
   scaffoldBackgroundColor: Colors.green[700],
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(foregroundColor: Colors.white),
+  ),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.green[400], foregroundColor: Colors.white),
   ),
 );
 

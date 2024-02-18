@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -32,7 +32,7 @@ void selectNotification(String? payload) async {}
 
 Future<String> _getLocalTimeZone() async {
   try {
-    return await FlutterNativeTimezone.getLocalTimezone();
+    return await FlutterTimezone.getLocalTimezone();
   } catch (e) {
     debugPrint("$e");
     return "Asia/Tokyo";
