@@ -1,6 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pomowor/common/util/local_notification.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 const int timerId = 10000;
@@ -12,14 +11,13 @@ final flutterLocalNotificationsProvider =
 
 // Flutter local notification plugin wrapper
 class LocalNotification {
-  LocalNotification();
+  final FlutterLocalNotificationsPlugin plugin;
 
-  Future<FlutterLocalNotificationsPlugin> get plugin async =>
-      await initLocalNotification();
+  LocalNotification(this.plugin);
 
   /// Make scheduled notification
   Future<void> scheduledNotification(String body, Duration showIn) async {
-    (await plugin).zonedSchedule(
+    plugin.zonedSchedule(
         timerId,
         'Pomowor',
         body,
@@ -36,9 +34,11 @@ class LocalNotification {
 
   /// Cancel created timer
   void cancelTimer() async {
-    (await plugin).cancel(timerId);
+    plugin.cancel(timerId);
   }
 }
 
-final localNotificationProvider =
-    Provider<LocalNotification>((ref) => LocalNotification());
+final localNotificationProvider = Provider<LocalNotification>((ref) {
+  final plugin = ref.watch(flutterLocalNotificationsProvider);
+  return LocalNotification(plugin);
+});
